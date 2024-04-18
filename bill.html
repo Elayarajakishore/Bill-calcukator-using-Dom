@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juice Shop Bill Calculator</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 20px;
+            background-image: url("image/juice.jpg");
+            background-size: cover;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        select {
+            margin-bottom: 10px;
+        }
+        #juice1 {
+            position: absolute;
+            left: 10%;
+            top: 24%;
+            border: 2px solid black;
+            height: 330px;
+            width: 300px;
+            padding-left: 40px;
+            border-radius: 10px;
+            font-weight: 400;
+            background-color: rgb(239, 182, 182);
+        }
+    </style>
+</head>
+<body>
+    <div id="juice1">
+        <h1><u>Juice Shop Bill Calculator</u></h1>
+        <label for="juice">Select Juice Type:</label>
+        <select id="juice">
+            <option value="juice">Fresh juices</option>
+            <option value="orange">Orange Juice - 20</option>
+            <option value="apple">Apple Juice - 25</option>
+            <option value="carrot">Carrot Juice - 40</option>
+            <option value="pineapple">Pineapple Juice - 45</option>
+            <option value="grapes">Grapes Juice - 35</option>
+            <option value="watermelon">Watermelon Juice - 30</option>
+        </select>
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" value="0" min="1"><br><br>
+        <button onclick="calculateBill()">Calculate Total</button>
+        <button onclick="resetCalculator()">Reset</button>
+        <br><br>
+        <div id="total"></div>
+    </div>
+
+    <script>
+        function calculateBill() {
+            const juice = document.getElementById('juice').value;
+            const quantity = parseInt(document.getElementById('quantity').value);
+            let price;
+
+            switch (juice) {
+                case 'orange':
+                    price = 20;
+                    break;
+                case 'apple':
+                    price = 25;
+                    break;
+                case 'carrot':
+                    price = 40;
+                    break;
+                case 'pineapple':
+                    price = 45;
+                    break;
+                case 'grapes':
+                    price = 35;
+                    break;
+                case 'watermelon':
+                    price = 30;
+                    break;
+                default:
+                    price = 0;
+            }
+
+            const total = price * quantity;
+            document.getElementById('total').innerText = `Total Bill: ${total.toFixed(2)}`;
+        }
+
+        function resetCalculator() {
+            document.getElementById('juice').selectedIndex = 0;
+            document.getElementById('quantity').value = 0;
+            document.getElementById('total').innerText = "";
+        }
+    </script>
+</body>
+</html>
